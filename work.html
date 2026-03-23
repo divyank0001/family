@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cinematic Love Story</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		body{
+			margin:0;
+			font-family:'Segoe UI',sans-serif;
+			background:#fff;
+			color:#333;
+			overflow:auto; /* allow scrolling */background:#fff;color:#333;}
+			.navbar{background:#ffd6e0;}
+			.navbar a{color:#333!important;}
+
+			.page {position:relative;width:100%;min-height:100vh;height:auto;display:none;justify-content:center;align-items:center;text-align:center;padding:50px;}
+			.active{display:flex;animation:scene 1.2s ease;}
+			@keyframes scene{from{opacity:0;transform:scale(0.92);}to{opacity:1;transform:scale(1);}}
+
+			h1{margin-bottom:25px;color:#ff6f91;text-shadow:0 0 12px #ffc2d1;}
+			.story{max-width:980px;font-size:1.28rem;line-height:2.15;opacity:0;animation:textFade 2.2s forwards;}
+			@keyframes textFade{to{opacity:1;}}
+
+			.line{opacity:0;transform:translateY(20px);}
+			.line.show{animation:lineIn 1.2s forwards;}
+			@keyframes lineIn{to{opacity:1;transform:translateY(0);}}
+
+			.btn-custom{margin-top:40px;padding:12px 35px;border-radius:30px;background:#ff8fab;color:white;font-weight:bold;border:none;}
+
+			.gallery{margin-top:30px;position:relative;width:220px;height:150px;}
+			.gallery img{position:absolute;width:100%;height:100%;object-fit:cover;border-radius:20px;opacity:0;transition:1.5s;}
+			.gallery img.active{opacity:1;}
+
+			.soft{background:#ffe5ec;} 
+			.warm{background:#ffd6e0;} 
+			.cool{background:#e0f7fa;} 
+
+			.heart{position:fixed;color:#ff8fab;animation:floatUp 6s linear infinite;}
+			@keyframes floatUp{0%{transform:translateY(100vh);opacity:1;}100%{transform:translateY(-10vh);opacity:0;}}
+
+			.spark{position:fixed;color:#fff;animation:spark 1.5s ease-out forwards;}
+			@keyframes spark{0%{opacity:1;transform:scale(0);}100%{opacity:0;transform:scale(2) translateY(-40px);}}
+
+			canvas{position:fixed;top:0;left:0;z-index:-1;}
+		</style>
+	</head>
+	<body>
+
+		<canvas id="particles"></canvas>
+		<nav class="navbar navbar-expand-lg"><div class="container"><a class="navbar-brand">💖 </a></div></nav>
+		<audio id="music" loop></audio>
+
+<!-- PAGE 1 -->
+<div id="p1" class="page active soft">
+	<div>
+		<h1>The Beginning</h1>
+		<p class="story">
+			Two people, different in ways that didn’t make sense together. Conversations that didn’t always align. Expectations that didn’t always meet.
+
+			And still… they stayed. Not because it was easy, but because something quiet inside them refused to give up.
+		</p>
+		<div class="gallery">
+			<img src="img/family1.jpeg" class="active"><img src="img/family2.jpeg"><img src="img/family3.jpeg">
+		</div>
+		<button class="btn btn-custom" onclick="nextPage(2)">Continue </button>
+	</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="p2" class="page cool">
+	<div>
+		<h1>The Chaos</h1>
+		<p class="story">
+			Fights came, sometimes over the smallest things, yet they carried the weight of unspoken fears and fragile hearts.But even in that quiet distance, something remained unbroken… and despite everything, they still chose to stay, to hold on, and to continue writing the same story together.
+		</p>
+		<div class="gallery"><img src="img/family4.jpeg" class="active"><img src="img/family5.jpeg"></div>
+		<button class="btn btn-custom" onclick="nextPage(3)">Continue </button>
+	</div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="p3" class="page soft">
+	<div>
+		<h1>The Silence</h1>
+		<p class="story">
+			Not every storm ends with words. Some fade into silence instead… heavy, slow, and thick with everything that was never said, yet deeply felt. 
+
+			But even then… through that quiet weight and unfinished sentences, they chose not to walk away. They stayed, holding onto something fragile yet real, letting their presence speak where words could not.
+		</p>
+		<button class="btn btn-custom" onclick="nextPage(4)">Continue </button>
+	</div>
+</div>
+
+<!-- PAGE 4 -->
+<div id="p4" class="page warm">
+	<div>
+		<h1>The Little Chaos</h1>
+		<p class="story">
+			Then came a child.
+
+			A little storm. A little drama. A little world that made everything louder, messier… and more beautiful.
+
+			Silly. Annoying. Dramatic. But loved… completely, without conditions. this too
+		</p>
+		<div class="gallery"><img src="img/family6.jpeg" class="active"><img src="img/family7.jpeg"></div>
+		<button class="btn btn-custom" onclick="nextPage(5)">Continue </button>
+	</div>
+</div>
+
+<!-- PAGE 5 -->
+<div id="p5" class="page soft">
+	<div>
+		<h1>25+ Years</h1>
+		<p class="story">
+			They stayed.
+
+			Not because everything was perfect, or easy, or untouched by the chaos life kept sending their way… but because every time things fell apart, they found their way back to each other.
+
+			Again and again, in quiet moments and in storms, in broken words and healing silences… they chose each other. Not once, but every single time.
+		</p>
+		<button class="btn btn-custom" onclick="delayedFinal()">Continue </button>
+	</div>
+</div>
+
+<!-- FINAL -->
+<div id="p6" class="page warm">
+	<div>
+		<h1>💌 You're Invited</h1>
+		<p class="story">
+			<span class="line">After 25+ years of love…</span><br>
+			<span class="line">of chaos and silence…</span><br>
+			<span class="line">of staying when it was hard…</span><br>
+			<span class="line">I invite you to my father and mother’s anniversary celebration</span><br><br>
+			<span class="line"><b>Vijay Lakshmi</b> ❤️ <b>Dharamveer Singh Chauhan</b></span><br><br>
+			<span class="line">invite you to celebrate their journey</span><br>
+			<span class="line">📅 1st April <br></span>
+            <span class="line">🕉️ Sundarkand Path</span><br>
+            <span class="line">🕐 1:00 PM – 5:00 PM</span><br>
+            <span class="line">🍽️ Dinner at 6:00 PM</span><br>
+            <span class="line">Looking forward to your presence and blessings</span><br>
+            <span class="line"><b>– Divyank Chauhan</b></span>
+		</p>
+		<div class="gallery"><img src="img/family8.jpeg" class="active"><img src="img/family9.jpeg"></div>
+	</div>
+</div>
+
+<script>
+	function nextPage(n){
+		for(let i=1;i<=6;i++) document.getElementById('p'+i).classList.remove('active');
+			document.getElementById('p'+n).classList.add('active');
+		changeMusic(n);
+	}
+
+	function delayedFinal(){
+		setTimeout(()=>{nextPage(6);revealLines();startHearts();burst();},1200);
+	}
+
+	function revealLines(){
+		let lines=document.querySelectorAll('#p6 .line');
+		lines.forEach((l,i)=>{setTimeout(()=>l.classList.add('show'),i*900);});
+	}
+
+	function changeMusic(n){let m=document.getElementById('music');m.src='music'+n+'.mp3';m.play();}
+
+	setInterval(()=>{
+		document.querySelectorAll('.gallery').forEach(g=>{
+			let imgs=g.querySelectorAll('img');
+			let i=[...imgs].findIndex(x=>x.classList.contains('active'));
+			imgs[i].classList.remove('active');
+			imgs[(i+1)%imgs.length].classList.add('active');
+		});
+	},3200);
+
+	function startHearts(){setInterval(()=>{let h=document.createElement('div');h.classList.add('heart');h.innerHTML='💖';h.style.left=Math.random()*100+'vw';h.style.fontSize=(Math.random()*20+15)+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),6000);},250);} 
+
+	function burst(){for(let i=0;i<30;i++){let s=document.createElement('div');s.classList.add('spark');s.innerHTML='✨';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';document.body.appendChild(s);setTimeout(()=>s.remove(),1500);}}
+
+	let c=document.getElementById('particles');let ctx=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;let pts=[];for(let i=0;i<60;i++){pts.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});}
+	function draw(){ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#ffc2d1';pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fill();p.y+=0.2;if(p.y>c.height)p.y=0;});requestAnimationFrame(draw);}draw();
+
+	changeMusic(1);
+</script>
+
+</body>
+</html>
